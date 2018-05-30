@@ -6,15 +6,15 @@ require_relative("../pub.rb")
 class CustomerTest < MiniTest::Test
 
   def setup
-    @customer1 = Customer.new("James", 1000, 28)
-    @customer2 = Customer.new("Ed", 1500, 40 )
-    @customer3 = Customer.new("Adam", 50, 12)
-    @drink1 = Drink.new("beer", 5)
-    @drink2 = Drink.new("wine", 4)
-    @drink3 = Drink.new("gin", 6)
-    @drink4 = Drink.new("vodka", 7)
-    @drink5 = Drink.new("cider", 8)
-    @drink6 = Drink.new("milkshake", 3)
+    @customer1 = Customer.new("James", 1000, 28, 1)
+    @customer2 = Customer.new("Ed", 1500, 40, 20 )
+    @customer3 = Customer.new("Adam", 50, 12, 0)
+    @drink1 = Drink.new("beer", 5, 4)
+    @drink2 = Drink.new("wine", 4, 17)
+    @drink3 = Drink.new("gin", 6, 30)
+    @drink4 = Drink.new("vodka", 7, 30)
+    @drink5 = Drink.new("cider", 8, 5)
+    @drink6 = Drink.new("milkshake", 3, 0)
     @pub1 = Pub.new("Chanter", 100, [@drink1, @drink2, @drink3, @drink4, @drink5, @drink6])
   end
 
@@ -52,5 +52,13 @@ class CustomerTest < MiniTest::Test
   assert_equal(true,@customer1.buys_drink(@pub1,@drink1))
   end
 
+  def test_drunkenness__no_drink
+    assert_equal(1, @customer1.drunkenness)
+  end
+
+  def test_drunkenness__one_drink
+    @customer2.buys_drink(@pub1, @drink5)
+    assert_equal(25, @customer2.drunkenness)
+  end
 
 end
