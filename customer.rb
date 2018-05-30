@@ -28,4 +28,11 @@ class Customer
    return true
  end
 
+  def eats(food)
+    @drunkenness -= food.rejuvenation_level
+    if @drunkenness < 0
+      @drunkenness = 0
+    end
+  end
+
 end
