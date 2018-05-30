@@ -6,8 +6,9 @@ require_relative("../pub.rb")
 class CustomerTest < MiniTest::Test
 
   def setup
-    @customer1 = Customer.new("James", 1000)
-    @customer2 = Customer.new("Ed", 1500 )
+    @customer1 = Customer.new("James", 1000, 28)
+    @customer2 = Customer.new("Ed", 1500, 40 )
+    @customer3 = Customer.new("Adam", 50, 12)
     @drink1 = Drink.new("beer", 5)
     @drink2 = Drink.new("wine", 4)
     @drink3 = Drink.new("gin", 6)
@@ -25,6 +26,10 @@ class CustomerTest < MiniTest::Test
     assert_equal(1000, @customer1.wallet_amount)
   end
 
+  def test_cusomter_age
+    assert_equal(28, @customer1.age)
+  end
+
   def test_customer_buys_drink__wallet_amount_decreases
     @customer1.buys_drink(@pub1, @drink1)
     assert_equal(995, @customer1.wallet_amount)
@@ -37,6 +42,14 @@ class CustomerTest < MiniTest::Test
 
   def test_customer_can_affored_drink?
     assert_equal(true, @customer1.customer_can_afford_drink?(@drink1))
+  end
+
+  def test_customer_served__underage
+  assert_equal(nil,@customer3.buys_drink(@pub1,@drink1))
+  end
+
+  def test_customer_served__overage
+  assert_equal(true,@customer1.buys_drink(@pub1,@drink1))
   end
 
 
