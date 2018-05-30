@@ -11,7 +11,7 @@ class PubTest < MiniTest::Test
     @drink4 = Drink.new("vodka", 7)
     @drink5 = Drink.new("cider", 8)
     @drink6 = Drink.new("milkshake", 3)
-    @pub1 = Pub.new("Chanter", 100, [@drink1, @drink2, @drink3, @drink4, @drink5, @drink6])
+    @pub1 = Pub.new("Chanter", 100, {@drink1, @drink2, @drink3, @drink4, @drink5, @drink6})
   end
 
   def test_pub_name
