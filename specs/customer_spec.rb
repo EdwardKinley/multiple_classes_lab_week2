@@ -45,7 +45,7 @@ class CustomerTest < MiniTest::Test
   end
 
   def test_customer_served__underage
-  assert_equal(nil,@customer3.buys_drink(@pub1,@drink1))
+  assert_nil(@customer3.buys_drink(@pub1,@drink1))
   end
 
   def test_customer_served__overage
@@ -60,5 +60,29 @@ class CustomerTest < MiniTest::Test
     @customer2.buys_drink(@pub1, @drink5)
     assert_equal(25, @customer2.drunkenness)
   end
+
+  def test_sober__yes
+    assert_equal(true, @customer1.sober?)
+  end
+
+  def test_sober__no
+    @customer2.buys_drink(@pub1, @drink3)
+    @customer2.buys_drink(@pub1, @drink4)
+    @customer2.buys_drink(@pub1, @drink3)
+    assert_equal(false, @customer2.sober?)
+  end
+
+  def test_served__yes
+    assert_equal(true, @customer1.buys_drink(@pub1, @drink1))
+  end
+
+  def test_served__no
+    @customer2.buys_drink(@pub1, @drink3)
+    @customer2.buys_drink(@pub1, @drink4)
+    @customer2.buys_drink(@pub1, @drink3)
+    @customer2.buys_drink(@pub1, @drink3)
+    assert_nil(@customer2.buys_drink(@pub1, @drink4))
+  end
+
 
 end
