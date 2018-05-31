@@ -1,7 +1,10 @@
 require("minitest/autorun")
 require_relative("../pub.rb")
 require_relative("../drink.rb")
+<<<<<<< HEAD
 require ("minitest/rg")
+=======
+>>>>>>> 454a4956e27e604ba02960c61037d3049e23e6de
 
 class PubTest < MiniTest::Test
 
